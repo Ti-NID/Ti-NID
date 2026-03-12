@@ -131,15 +131,3 @@ python script/instruction_generator.py
 ## 贡献指南
 
 欢迎提交Issue和Pull Request来改进本项目。
-
-## 许可证
-
-本项目采用 MIT 许可证，详见 `LICENSE` 文件。
-
-## 联系方式
-
-如有问题或建议，请通过GitHub Issues联系。
-
-## 致谢
-
-感谢所有为本项目做出贡献的开发者和研究者。
