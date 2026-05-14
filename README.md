@@ -27,7 +27,6 @@ Ti-NID/
 │       ├── news_generation_500.json
 │       ├── qa_instructions_500.json
 │       ├── summarization_500.json
-│       ├── text_classification_test_500.json
 │       └── title_generation_500.json
 ├── script/                        # 脚本目录
 │   ├── instruction_generator.py  # 指令化转换算法
@@ -130,7 +129,6 @@ python script/instruction_generator.py
 - `news_generation_500.json`：新闻生成指令数据
 - `qa_instructions_500.json`：常识问答/知识解答指令数据
 - `summarization_500.json`：文本摘要生成指令数据
-- `text_classification_test_500.json`：文本分类指令数据
 - `title_generation_500.json`：文章标题生成指令数据
 
 ## 测试集说明
