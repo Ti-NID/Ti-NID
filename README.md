@@ -1,10 +1,10 @@
-# Ti-NID: Tibetan Instruction-Finetuning Dataset
+# Ti-NID: A Tibetan Instruction Dataset Based on Native Bi-tuples and Grammatical Constraints
 
-藏语指令微调数据集构建
+藏文原生指令数据集（Ti-NID）
 
 ## 项目简介
 
-本项目提供了一个完整的藏语指令数据集构建流程，包括原始数据处理、指令化转换算法、以及多种测试集的生成。项目旨在为藏文自然语言处理任务提供高质量的指令数据集。
+本项目提供了一个完整的藏语指令数据集构建流程，开源了部分藏文原生指令数据集。具体包括原生二元组构建、归一化具指连词的添接规则、二元组指令格式化算法，以及多种指令测试集数据。项目旨在为藏文自然语言处理任务提供高质量的指令数据集。
 
 ## 项目结构
 
@@ -150,6 +150,7 @@ python script/instruction_generator.py
 ### 多任务测试测试集 (`data/test_sets/multi_task_test/`)
 
 用于多任务学习评估，包含多种任务类型的数据。
+
 
 ## 贡献指南
 
