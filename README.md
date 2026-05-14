@@ -1,4 +1,4 @@
-# Ti-IFD: Tibetan Instruction-Finetuning Dataset
+# Ti-NID: Tibetan Instruction-Finetuning Dataset
 
 藏语指令微调数据集构建
 
@@ -9,7 +9,7 @@
 ## 项目结构
 
 ```
-Ti-IFD/
+Ti-NID/
 ├── data/                          # 数据目录
 │   ├── raw/                       # 原始数据
 │   │   ├── rawdata.txt            # 二元组原始数据（字词-释义）
