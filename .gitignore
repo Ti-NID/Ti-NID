@@ -42,5 +42,5 @@ temp/
 tmp/
 
 # Data files (keep structure, ignore large processed files if needed)
-# data/processed/*.json  # Uncomment if you don't want to commit processed data
-# data/raw/*.csv         # Uncomment if you don't want to commit raw CSV files
+# data/processed/*.json # Uncomment if you don't want to commit processed data
+# data/raw/*.csv # Uncomment if you don't want to commit raw CSV files

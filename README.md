@@ -1,73 +1,82 @@
 # Ti-NID: A Tibetan Instruction Dataset Based on Native Bi-tuples and Grammatical Constraints
 
-藏文原生指令数据集（Ti-NID）
+**Ti-NID** (Tibetan Native Instruction Dataset) is an open-source Tibetan instruction-following dataset built from native bi-tuples and Tibetan grammatical rules.
 
-## 项目简介
+## Overview
 
-本项目提供了一个完整的藏语指令数据集构建流程，开源了部分藏文原生指令数据集。具体包括原生二元组构建、归一化具指连词的添接规则、二元组指令格式化算法，以及多种指令测试集数据。项目旨在为藏文自然语言处理任务提供高质量的指令数据集。
+This project provides a complete pipeline for constructing Tibetan instruction datasets. It releases a subset of native Tibetan instruction data, including:
 
-## 项目结构
+- Native bi-tuple construction
+- Normalized rules for attaching demonstrative connectives
+- Bi-tuple-to-instruction formatting algorithms
+- Multiple instruction test sets
+
+The goal is to provide high-quality instruction data for Tibetan natural language processing tasks.
+
+## Project Structure
 
 ```
 Ti-NID/
-├── data/                          # 数据目录
-│   ├── raw/                       # 原始数据
-│   │   ├── rawdata.txt            # 二元组原始数据（字词-释义）
-│   │   └── README_QA.md           # QA数据说明文档
-│   ├── processed/                 # 处理后的数据
-│   │   └── instructions.json     # 转换后的指令数据集
-│   ├── test_sets/                 # 测试集目录
-│   │   ├── sft_test/              # SFT测试集
-│   │   ├── instruction_diversity_test/  # 指令多样性增益验证测试集
-│   │   ├── few_shot_test/         # 少样本学习测试集
-│   │   └── multi_task_test/       # 多任务测试测试集
-│   └──train/                      # 部分训练数据
+├── data/                              # Data directory
+│   ├── raw/                           # Raw data
+│   │   ├── rawdata.txt                # Native bi-tuple data (term-definition)
+│   │   └── README_QA.md               # QA data documentation
+│   ├── processed/                     # Processed data
+│   │   └── instructions.json          # Converted instruction dataset
+│   ├── test/                          # Test sets
+│   │   ├── sft_test/                  # SFT test set
+│   │   ├── instruction_diversity_test/  # Instruction diversity evaluation set
+│   │   ├── few_shot_test/             # Few-shot learning test set
+│   │   └── multi_task_test/           # Multi-task evaluation set
+│   └── train/                         # Sample training data
 │       ├── essay_generation_500.json
 │       ├── explanation_generation_500.json
 │       ├── news_generation_500.json
 │       ├── qa_instructions_500.json
 │       ├── summarization_500.json
+│       ├── text_classification_test_500.json
 │       └── title_generation_500.json
-├── script/                        # 脚本目录
-│   ├── instruction_generator.py  # 指令化转换算法
-│   ├── create_qa_testset.py      # QA测试集生成脚本
-│   └── process_qa.py              # QA数据处理脚本
-├── README.md                      # 项目说明文档
-├── requirements.txt               # Python依赖包
-└── LICENSE                        # 开源许可证
-
+├── script/                            # Scripts
+│   ├── instruction_generator.py       # Bi-tuple to instruction conversion
+│   ├── create_qa_testset.py           # QA test set generation
+│   └── process_qa.py                  # QA data processing
+├── README.md                          # Project documentation
+├── requirements.txt                   # Python dependencies
+└── LICENSE                            # Open-source license
 ```
 
-## 数据格式
+## Data Format
 
-### 原始数据格式
+### Raw Data Format
 
-原始数据文件 `data/raw/rawdata.txt` 采用二元组格式，每行一个词条：
+The raw file `data/raw/rawdata.txt` uses a bi-tuple format with one entry per line:
 
 ```
-术语-释义
+term-definition
 ```
 
-示例：
+Example:
+
 ```
 གྲོས་མོལ-གྲོས་མོལ་བྱེད་པའམ་གླེང་མོལ།
 བསབ་པ-གསོབ་པའི་མ་འོངས་པ།
 ```
 
-### 转换后数据格式
+### Converted Instruction Format
 
-转换后的指令数据集采用JSON格式，每条数据包含以下字段：
+The converted dataset is stored in JSON. Each record contains:
 
 ```json
 {
-  "instruction": "术语་具指连词་指令模板",
+  "instruction": "term + connective + instruction template",
   "input": "",
-  "output": "释义内容",
+  "output": "definition content",
   "task_type": "ID_explanation"
 }
 ```
 
-示例：
+Example:
+
 ```json
 {
   "instruction": "གྲོས་མོལ་ཞེས་པའི་མིང་ཚིག་འདིར་འོས་འཚམས་ཀྱི་འགྲེལ་བཤད་གནང་རོགས།",
@@ -77,79 +86,97 @@ Ti-NID/
 }
 ```
 
-## 使用方法
+## Usage
 
-### 环境要求
+### Requirements
 
 - Python 3.7+
-- 依赖包见 `requirements.txt`
+- See `requirements.txt` for dependencies
 
-### 安装依赖
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 运行转换脚本
+### Run the Conversion Script
 
 ```bash
 python script/instruction_generator.py
 ```
 
-运行后会在 `data/processed/` 目录下生成 `instructions.json` 文件。
+This generates `data/processed/instructions.json`.
 
-## 指令化算法说明
+## Instruction Formatting Algorithm
 
-### 具指连词选择规则
+### Demonstrative Connective Selection Rules
 
-算法根据藏文语法规则自动选择适当的具指连词（ཅེས་པའི、ཞེས་པའི）：
+The algorithm selects the appropriate demonstrative connective (`ཅེས་པའི` or `ཞེས་པའི`) according to Tibetan grammar:
 
-1. **规则1**：后加字为 ག/ད/བ 或再后加字为 ད → 使用 `ཅེས་པའི`
-2. **规则2**：后加字为 ང/ན/མ/འ/ར/ལ 且没有再后加字 → 使用 `ཞེས་པའི`
-3. **规则3**：后加字为 ས 或再后加字为 ས → 使用 `ཞེས་པའི`
+1. **Rule 1**: If the syllable suffix is ག/ད/བ, or the second suffix is ད → use `ཅེས་པའི`
+2. **Rule 2**: If the syllable suffix is ང/ན/མ/འ/ར/ལ and there is no second suffix → use `ཞེས་པའི`
+3. **Rule 3**: If the syllable suffix is ས, or the second suffix is ས → use `ཞེས་པའི`
 
-### 指令模板
+### Instruction Templates
 
-系统随机选择以下指令模板之一：
+The system randomly selects one of the following Tibetan instruction templates:
 
-- `མིང་ཚིག་འདིའི་ནང་དོན་ཅི་ཡིན།`（这个词语的含义是什么？）
-- `མིང་ཚིག་འདིར་དོན་འགྲེལ་བྱོས།`（请对这个词语进行释义。）
-- `མིང་ཚིག་འདིར་འོས་འཚམས་ཀྱི་འགྲེལ་བཤད་གནང་རོགས།`（请对这个词语给出恰当的解释。）
-- `ཐ་སྙད་འདིའི་གོ་དོན་ཤོད།`（说出这个术语的意思。）
+- `མིང་ཚིག་འདིའི་ནང་དོན་ཅི་ཡིན།` — What is the meaning of this word?
+- `མིང་ཚིག་འདིར་དོན་འགྲེལ་བྱོས།` — Please define this word.
+- `མིང་ཚིག་འདིར་འོས་འཚམས་ཀྱི་འགྲེལ་བཤད་གནང་རོགས།` — Please provide an appropriate explanation for this word.
+- `ཐ་སྙད་འདིའི་གོ་དོན་ཤོད།` — State the meaning of this term.
 
-## 训练集说明
+## Training Data
 
-### SFT训练集 (`train/`)
+### SFT Training Set (`data/train/`)
 
-用于监督微调（Supervised Fine-Tuning）的基础训练数据。为方便开源社区进行模型微调与效果复现，本项目针对涵盖的 7 大核心任务类别，**每类精选并开源了 500 条高质量指令数据**（共计 3500 条）。
+Supervised fine-tuning (SFT) sample data. To support community fine-tuning and reproducibility, this repository releases **500 high-quality instruction samples per task type** across 7 core task categories (3,500 samples in total).
 
-具体包含以下子任务文件：
-- `essay_generation_500.json`：作文生成（智能生成）指令数据
-- `explanation_generation_500.json`：词语释义/名词解释指令数据
-- `news_generation_500.json`：新闻生成指令数据
-- `qa_instructions_500.json`：常识问答/知识解答指令数据
-- `summarization_500.json`：文本摘要生成指令数据
-- `title_generation_500.json`：文章标题生成指令数据
+Included files:
 
-## 测试集说明
+- `essay_generation_500.json` — Essay generation
+- `explanation_generation_500.json` — Word/term definition
+- `news_generation_500.json` — News generation
+- `qa_instructions_500.json` — Knowledge QA
+- `summarization_500.json` — Text summarization
+- `text_classification_test_500.json` — Text classification
+- `title_generation_500.json` — Title generation
 
-### SFT测试集 (`data/test_sets/sft_test/`)
+## Test Sets
 
-用于监督微调（Supervised Fine-Tuning）的测试集，包含标准格式的指令数据。
+### SFT Test Set (`data/test/sft_test/`)
 
-### 指令多样性增益验证测试集 (`data/test_sets/instruction_diversity_test/`)
+Standard instruction-format data for supervised fine-tuning evaluation.
 
-用于验证指令多样性对模型性能的影响，通常包含更多样本（如400条）。
+### Instruction Diversity Test Set (`data/test/instruction_diversity_test/`)
 
-### 少样本学习测试集 (`data/test_sets/few_shot_test/`)
+Used to evaluate the impact of instruction diversity on model performance (typically ~400 samples).
 
-用于少样本学习（Few-shot Learning）评估，包含少量示例数据。
+### Few-Shot Test Set (`data/test/few_shot_test/`)
 
-### 多任务测试测试集 (`data/test_sets/multi_task_test/`)
+Used for few-shot learning evaluation with a small number of examples.
 
-用于多任务学习评估，包含多种任务类型的数据。
+### Multi-Task Test Set (`data/test/multi_task_test/`)
 
+Used for multi-task evaluation across several task types.
 
-## 贡献指南
+## Contributing
 
-欢迎提交Issue和Pull Request来改进本项目。
+Issues and pull requests are welcome.
+
+## Citation
+
+If you use Ti-NID in your research, please cite this repository:
+
+```bibtex
+@misc{ti-nid2025,
+  title={Ti-NID: A Tibetan Instruction Dataset Based on Native Bi-tuples and Grammatical Constraints},
+  author={Ti-IDF},
+  year={2025},
+  url={https://github.com/Ti-IDF/Ti-NID}
+}
+```
+
+## License
+
+See [LICENSE](LICENSE) for details.

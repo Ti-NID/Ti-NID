@@ -1,27 +1,30 @@
-# QA数据文件说明
+# QA Data File Guide
 
-请将完整的CSV格式问答数据保存为 `qa_data.csv` 文件。
+Save your complete CSV-format Q&A data as `qa_data.csv`.
 
-## 数据格式
+## Format
 
-CSV文件应包含以下列：
-- question: 问题
-- A: 选项A
-- B: 选项B  
-- C: 选项C
-- D: 选项D
-- answer: 正确答案（A、B、C或D）
+The CSV file must include the following columns:
 
-## 示例
+- `question` — Question text
+- `A` — Option A
+- `B` — Option B
+- `C` — Option C
+- `D` — Option D
+- `answer` — Correct answer (`A`, `B`, `C`, or `D`)
+
+## Example
 
 ```csv
 question,A,B,C,D,answer
-问题1,选项A1,选项B1,选项C1,选项D1,A
-问题2,选项A2,选项B2,选项C2,选项D2,B
+Question 1,Option A1,Option B1,Option C1,Option D1,A
+Question 2,Option A2,Option B2,Option C2,Option D2,B
 ```
 
-## 使用方法
+## Usage
 
-1. 将CSV数据保存到 `data/raw/qa_data.csv`
-2. 运行处理脚本：`python code/create_qa_testset.py`
-3. 生成的测试集将保存在 `test_sets/sft_test/qa_test.json` 和 `test_sets/few_shot_test/qa_test.json`
+1. Save the CSV file to `data/raw/qa_data.csv`
+2. Run the processing script: `python script/create_qa_testset.py`
+3. Generated test sets are saved to:
+   - `data/test/sft_test/qa_test.json`
+   - `data/test/few_shot_test/qa_test.json`

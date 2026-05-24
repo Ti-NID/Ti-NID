@@ -1,61 +1,57 @@
-# 项目提交检查清单
+# Project Submission Checklist
 
-## ✅ 文档完整性
+## Documentation
 
-- [x] README.md - 项目主说明文档
-- [x] PROJECT_STRUCTURE.md - 项目结构说明
-- [x] USAGE.md - 使用指南
-- [x] USAGE_QA.md - QA测试集生成指南
-- [x] LICENSE - MIT开源许可证
-- [x] .gitignore - Git忽略配置
+- [x] README.md — Main project documentation
+- [x] CHECKLIST.md — Submission checklist
+- [x] LICENSE — MIT open-source license
+- [x] .gitignore — Git ignore configuration
 
-## ✅ 代码文件
+## Code
 
-- [x] script/instruction_generator.py - 指令化转换算法
-- [x] script/create_qa_testset.py - QA测试集生成脚本
-- [x] script/process_qa.py - QA数据处理脚本
+- [x] script/instruction_generator.py — Bi-tuple to instruction conversion
+- [x] script/create_qa_testset.py — QA test set generation
+- [x] script/process_qa.py — QA data processing
 
-## ✅ 数据文件
+## Data Files
 
-- [x] data/raw/rawdata.txt - 原始二元组数据
-- [x] data/raw/README_QA.md - QA数据说明
-- [x] data/processed/instructions.json - 处理后的指令数据集
+- [x] data/raw/rawdata.txt — Raw bi-tuple data
+- [x] data/raw/README_QA.md — QA data documentation
+- [x] data/processed/instructions.json — Processed instruction dataset
 
-## ✅ 测试集文件
+## Test Sets
 
-- [x] data/test_sets/sft_test/ - SFT测试集目录
+- [x] data/test/sft_test/ — SFT test set
   - [x] 3_explanation_test.json
-- [x] data/test_sets/instruction_diversity_test/ - 指令多样性测试集
+- [x] data/test/instruction_diversity_test/ — Instruction diversity test set
   - [x] 3_explanation_test_400.json
-- [x] data/test_sets/few_shot_test/ - 少样本学习测试集
+- [x] data/test/few_shot_test/ — Few-shot test set
   - [x] 3_explanation_test.json
-- [x] data/test_sets/multi_task_test/ - 多任务测试集
-  - [x] 多个测试文件
+- [x] data/test/multi_task_test/ — Multi-task test set
+  - [x] Multiple test files
 
-## ✅ 路径一致性检查
+## Path Consistency
 
-- [x] README.md中的路径已更新为 `script/instruction_generator.py`
-- [x] PROJECT_STRUCTURE.md中的路径已更新
-- [x] USAGE.md中的路径已更新
-- [x] USAGE_QA.md中的路径已更新为 `script/create_qa_testset.py`
-- [x] 测试集路径统一为 `data/test_sets/`
+- [x] README.md paths point to `script/instruction_generator.py`
+- [x] Test set paths use `data/test/`
+- [x] QA scripts reference `script/create_qa_testset.py`
 
-## ✅ 代码验证
+## Code Verification
 
-- [x] script/instruction_generator.py 可以正常运行
-- [x] 代码中的路径配置正确
+- [x] script/instruction_generator.py runs successfully
+- [x] Path configuration in scripts is correct
 
-## 📝 提交前注意事项
+## Pre-Submission Notes
 
-1. **数据文件**: 确保 `data/processed/instructions.json` 是最新生成的
-2. **测试集**: 确保测试集文件格式正确
-3. **文档**: 所有文档中的路径引用都已更新
-4. **依赖**: requirements.txt 已包含必要的说明
+1. **Processed data**: Ensure `data/processed/instructions.json` is up to date
+2. **Test sets**: Verify test set file formats
+3. **Documentation**: All path references are consistent
+4. **Dependencies**: requirements.txt includes necessary notes
 
-## 🚀 提交命令
+## Push Commands
 
 ```bash
 git add .
-git commit -m "Initial commit: Ti-IFD Tibetan Instruction Following Dataset"
+git commit -m "docs: convert project documentation to English"
 git push origin main
 ```

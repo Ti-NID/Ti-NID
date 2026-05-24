@@ -1,12 +1,14 @@
-# Python依赖包
+# Python dependencies
 # Python 3.7+ required
 
-# 标准库（无需安装）
+# Standard library (no installation needed)
 # json
 # os
 # random
 # typing
+# csv
+# io
 
-# 如果需要处理更复杂的藏文文本，可以添加以下依赖：
-# pyyaml>=5.4.1  # 用于配置文件处理（可选）
-# pytest>=7.0.0  # 用于测试（可选）
+# Optional dependencies for advanced Tibetan text processing:
+# pyyaml>=5.4.1   # Configuration file handling (optional)
+# pytest>=7.0.0   # Testing (optional)
