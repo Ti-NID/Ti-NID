@@ -34,7 +34,6 @@ Ti-NID/
 │       ├── news_generation_500.json
 │       ├── qa_instructions_500.json
 │       ├── summarization_500.json
-│       ├── text_classification_test_500.json
 │       └── title_generation_500.json
 ├── script/                            # Scripts
 │   ├── instruction_generator.py       # Bi-tuple to instruction conversion
@@ -139,7 +138,6 @@ Included files:
 - `news_generation_500.json` — News generation
 - `qa_instructions_500.json` — Knowledge QA
 - `summarization_500.json` — Text summarization
-- `text_classification_test_500.json` — Text classification
 - `title_generation_500.json` — Title generation
 
 ## Test Sets
@@ -171,7 +169,7 @@ If you use Ti-NID in your research, please cite this repository:
 ```bibtex
 @misc{ti-nid2025,
   title={Ti-NID: A Tibetan Instruction Dataset Based on Native Bi-tuples and Grammatical Constraints},
-  author={Ti-IDF},
+  author={},
   year={2025},
   url={https://github.com/Ti-IDF/Ti-NID}
 }
