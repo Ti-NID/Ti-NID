@@ -1,6 +1,4 @@
-# Ti-NID: A Tibetan Instruction Dataset Based on Native Bi-tuples and Grammatical Constraints
-
-**Ti-NID** (Tibetan Native Instruction Dataset) is an open-source Tibetan instruction-following dataset built from native bi-tuples and Tibetan grammatical rules.
+# TI-NID: GRAMMAR-AWARE NATIVE INSTRUCTION CONSTRUCTION FOR TIBETAN---A REPRODUCIBLE SIMULATION STUDY
 
 ## Overview
 
